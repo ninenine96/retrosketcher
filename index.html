@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retrosketcher</title>
+    <script src="sketch.js" defer></script>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Retrosketcher: create pixel art</h1>
+    <div class="root">
+       
+        <div id="board"></div>
+        <div class="controls">
+            <input type="button" id="eraser" onclick="toggleEraser()" value="ERASE OFF">
+
+            <button id="reset" onclick="reset()">Reset</button>
+            
+            <input type="button" id="shader" onclick="toggleShader()" value="SHADE OFF">
+            
+            <input type="button" id="rainbow" onclick="toggleRandom()" value="RANDOM OFF">
+
+            <input type="range" id="sqaurecount"
+                min="16" max="'64"
+            >
+            <label for="reset">Squares</label>
+    
+            <input type="color" id="colorPicker">
+        </div>
+    </div>
+    
+
+</body>
+</html>
