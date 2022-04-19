@@ -1,6 +1,6 @@
 const root = document.querySelector("#board");
 const boardFragment = document.createDocumentFragment();
-const slider = document.querySelector("#sqaurecount");
+const slider = document.querySelector("#squarecount");
 
 function createGrid(count) {
 	root.style.gridTemplateRows = `repeat(${count}, 1fr)`;
@@ -9,7 +9,6 @@ function createGrid(count) {
 	for (let i = 0; i < count ** 2; i++) {
 		pixel = document.createElement("div");
 		pixel.className = "pixel";
-		pixel.setAttribute("draggable", "false");
 		boardFragment.appendChild(pixel);
 	}
 
@@ -21,6 +20,8 @@ function resizeGrid() {
 		let count = slider.value;
 		deleteGrid();
 		createGrid(count);
+		let textField = document.querySelector("#pensize");
+		textField.value = "Pen size" + " " + slider.value;
 	};
 }
 
@@ -39,11 +40,11 @@ colorPicker.addEventListener("input", () => {
 
 root.addEventListener("mousedown", (event) => {
 	event.preventDefault();
+	paintPixel(event, getPenColor()); //handing single click event
 
-	// paintPixelEvent = paintPixel(event, penColor);
 	if (event.buttons === 1) {
 		window.addEventListener("mouseover", (e) => {
-			paintPixel(e, getPenColor());
+			paintPixel(e, getPenColor()); //handling click+drag event
 		});
 	}
 });
@@ -107,6 +108,10 @@ function getRandomRGB() {
 	return Math.floor(Math.random() * 16777215).toString(16);
 }
 
+//cover your eyes, hide your kids, this is witchcraft!
+//copied this function from stackoverflow. Made a change in the return statement
+//Instead of returning an opacity (or Alpha) 1 rgba value it'll return a 0.2 value.
+//About the rest of the function, I'm as clueless as you.
 function hexToRGB(hex) {
 	var c;
 	if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {

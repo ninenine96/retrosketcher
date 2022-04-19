@@ -19,7 +19,7 @@ h1 {
 button, input {
     background-color: lightblue;
     height: 40px;
-    width: 110px;
+    width: 120px;
 }
 .root {
     /* height: 100%; */
@@ -52,5 +52,6 @@ button, input {
     margin: 10px 0 10px 20px;
 }
 
-
-  
+#squarecount {
+    direction: rtl;
+}
