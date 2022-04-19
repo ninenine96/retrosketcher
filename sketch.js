@@ -39,32 +39,29 @@ colorPicker.addEventListener("input", () => {
 
 root.addEventListener("mousedown", (event) => {
 	event.preventDefault();
-	let eraser = document.querySelector("#eraser");
-	let shader = document.querySelector("#shader");
-	let random = document.querySelector("#rainbow");
 
 	// paintPixelEvent = paintPixel(event, penColor);
 	if (event.buttons === 1) {
 		window.addEventListener("mouseover", (e) => {
-			if (eraser.value == "ERASE ON") {
-				let previousColor = penColor;
-				penColor = "#FFF";
-				paintPixel(e, penColor);
-				penColor = previousColor;
-			} else if (random.value == "RANDOM ON") {
-				let color = "#" + getRandomRGB();
-				console.log(color);
-				paintPixel(e, color);
-			} else if (shader.value == "SHADE ON") {
-				let color = hexToRGB(penColor);
-				console.log(color);
-				paintPixel(e, color);
-			} else {
-				paintPixel(e, penColor);
-			}
+			paintPixel(e, getPenColor());
 		});
 	}
 });
+
+function getPenColor() {
+	let eraser = document.querySelector("#eraser");
+	let shader = document.querySelector("#shader");
+	let random = document.querySelector("#rainbow");
+	if (eraser.value == "ERASE ON") {
+		return "#FFF";
+	} else if (random.value == "RANDOM ON") {
+		return "#" + getRandomRGB();
+	} else if (shader.value == "SHADE ON") {
+		return hexToRGB(penColor);
+	} else {
+		return penColor;
+	}
+}
 
 function paintPixel(e, color) {
 	if (e.buttons == 1) {
